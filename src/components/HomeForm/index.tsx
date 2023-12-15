@@ -3,16 +3,16 @@
 const actionUrl = "/api/upload"
 
 const HomeForm = () => {
-  function submit(event: React.FormEvent<HTMLFormElement>) {
+  async function submit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
 
     const formData = new FormData()
     formData.append("file", "111")
     formData.append("user_id", "user_id")
     console.log("formData", formData)
-    fetch(actionUrl, {
-      method: "GET",
-      // body: formData,
+    await fetch(actionUrl, {
+      method: "POST",
+      body: formData,
       // cache: "no-cache",
     })
 
@@ -44,7 +44,6 @@ const HomeForm = () => {
 
   return (
     <main>
-      <div>433434</div>
       <div className="flex justify-center items-center h-screen bg-gray-100">
         <form className="bg-white p-8 rounded-lg shadow-md" onSubmit={submit}>
           <div className="mb-4">
