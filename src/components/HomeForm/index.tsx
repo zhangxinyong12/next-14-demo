@@ -6,40 +6,28 @@ const HomeForm = () => {
   async function submit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
 
+    // 获取文件file
+    const fileInput = document.querySelector("#file") as HTMLInputElement
+    const file = fileInput?.files?.[0]
+    const user_id = (document.querySelector("#user_id") as HTMLInputElement)
+      .value
+    if (!file || !user_id) {
+      return false
+    }
     const formData = new FormData()
-    formData.append("file", "111")
-    formData.append("user_id", "user_id")
-    console.log("formData", formData)
-    await fetch(actionUrl, {
+    formData.append("file", file)
+    formData.append("user_id", user_id)
+    fetch(actionUrl, {
       method: "POST",
       body: formData,
-      // cache: "no-cache",
     })
-
-    return
-
-    // // 获取文件file
-    // const fileInput = document.querySelector("#file") as HTMLInputElement
-    // const file = fileInput?.files?.[0]
-    // const user_id = (document.querySelector("#user_id") as HTMLInputElement)
-    //   .value
-    // if (!file || !user_id) {
-    //   return false
-    // }
-    // const formData = new FormData()
-    // formData.append("file", file)
-    // formData.append("user_id", user_id)
-    // fetch(actionUrl, {
-    //   method: "POST",
-    //   body: formData,
-    // })
-    //   .then((res) => res.json())
-    //   .then((res) => {
-    //     console.log(res)
-    //   })
-    //   .catch((err) => {
-    //     console.log("err", err)
-    //   })
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res)
+      })
+      .catch((err) => {
+        console.log("err", err)
+      })
   }
 
   return (
