@@ -37,9 +37,11 @@ const StreamList = () => {
     }
   }
 
+  const [userId, setUserId] = useState("")
+
   useEffect(() => {
     fetchData()
-  }, [])
+  }, [userId])
 
   return (
     <div className="p-4">

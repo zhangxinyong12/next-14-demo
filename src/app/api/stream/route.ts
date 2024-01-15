@@ -53,37 +53,20 @@ export async function POST() {
   return new Response(stream)
 }
 
+const str = `
+你好啊，我是一个字符串，我是一，今天春节了，天气很好，放烟花，放烟花。放鞭炮。
+`
+
 export async function GET() {
-  let i = 0
-  let id: NodeJS.Timeout
+  const list = str.split("")
   const readableStream = new ReadableStream({
     async start(controller) {
-      controller.enqueue("H")
-      controller.enqueue("e")
-      controller.enqueue("l")
-      controller.enqueue("l")
-      controller.enqueue("o")
-      try {
-        id = setInterval(() => {
-          controller.enqueue(randomString())
-          controller.enqueue(randomString())
-        }, 300)
-      } catch (error) {
-        console.log(error)
-        id && clearInterval(id)
+      for (let i = 0; i < list.length; i++) {
+        await sleep(Math.random() * 1000)
+        controller.enqueue(list[i])
       }
-
-      await sleep(1000)
-      controller.enqueue(" ")
-      controller.enqueue("W")
-      controller.enqueue("o")
-      controller.enqueue("r")
-      controller.enqueue("l")
-      controller.enqueue("d")
-      await sleep(1000 * 5)
       controller.enqueue("结束了")
 
-      id && clearInterval(id)
       controller.close()
     },
   })
