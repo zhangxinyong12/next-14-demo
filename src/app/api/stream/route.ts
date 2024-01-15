@@ -1,5 +1,7 @@
 // https://developer.mozilla.org/docs/Web/API/ReadableStream#convert_async_iterator_to_stream
 
+import { clear } from "console"
+
 // 通过 async iterator 创建 ReadableStream
 function iteratorToStream(iterator: AsyncGenerator) {
   return new ReadableStream({
@@ -52,6 +54,8 @@ export async function POST() {
 }
 
 export async function GET() {
+  let i = 0
+  let id: NodeJS.Timeout
   const readableStream = new ReadableStream({
     async start(controller) {
       controller.enqueue("H")
@@ -59,6 +63,15 @@ export async function GET() {
       controller.enqueue("l")
       controller.enqueue("l")
       controller.enqueue("o")
+      try {
+        id = setInterval(() => {
+          controller.enqueue(randomString())
+          controller.enqueue(randomString())
+        }, 300)
+      } catch (error) {
+        console.log(error)
+        id && clearInterval(id)
+      }
 
       await sleep(1000)
       controller.enqueue(" ")
@@ -67,9 +80,10 @@ export async function GET() {
       controller.enqueue("r")
       controller.enqueue("l")
       controller.enqueue("d")
-      await sleep(1000)
+      await sleep(1000 * 5)
       controller.enqueue("结束了")
 
+      id && clearInterval(id)
       controller.close()
     },
   })

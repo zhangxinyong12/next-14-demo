@@ -6,6 +6,7 @@ export default function Home() {
     <main>
       {/* <HomeForm></HomeForm> */}
       <StreamList></StreamList>
+      <div>------</div>
     </main>
   )
 }
