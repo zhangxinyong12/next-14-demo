@@ -6,7 +6,9 @@ const Add = () => {
     <div>
       <h1>Add</h1>
       <button
-        onClick={increase}
+        onClick={() => {
+          increase(10)
+        }}
         className="border bg-gray-300 px-10 py-2 hover:bg-gray-500 rounded"
       >
         +
