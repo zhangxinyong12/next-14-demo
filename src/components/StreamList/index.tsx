@@ -39,10 +39,6 @@ const StreamList = () => {
 
   const [userId, setUserId] = useState("")
 
-  useEffect(() => {
-    fetchData()
-  }, [userId])
-
   return (
     <div className="p-4">
       <h2>测试http 返回流</h2>

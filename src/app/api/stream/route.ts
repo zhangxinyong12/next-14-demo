@@ -64,7 +64,6 @@ export async function GET() {
       for (let i = 0; i < list.length; i++) {
         await sleep(Math.random() * 1000)
         // TODO 有什么区别嘛？
-        controller.enqueue(list[i]) // 添加到流中
         controller.enqueue(encoder.encode(list[i])) // 添加到流中 Uint8Array
       }
       controller.enqueue("结束了")

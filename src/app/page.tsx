@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <main>
       {/* <HomeForm></HomeForm> */}
-      {/* <StreamList></StreamList> */}
+      <StreamList></StreamList>
       <h2>Zustand 状态管理</h2>
       <div>
         <About />
