@@ -1,6 +1,7 @@
 import About from "@/components/About"
 import HomeForm from "@/components/HomeForm"
 import StreamList from "@/components/StreamList"
+import User from "@/components/User"
 
 export default function Home() {
   return (
@@ -11,6 +12,11 @@ export default function Home() {
       <div>
         <About />
         <About />
+      </div>
+
+      <div>
+        <h3>user CRUD</h3>
+        <User></User>
       </div>
     </main>
   )
