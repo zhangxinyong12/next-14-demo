@@ -1,9 +1,12 @@
 import About from "@/components/About"
 import HomeForm from "@/components/HomeForm"
 import StreamList from "@/components/StreamList"
-import User from "@/components/User"
+import Cat from "@/components/Cat"
+import { initDB } from "../../lib/dataBase"
 
-export default function Home() {
+export default async function Home() {
+  await initDB()
+
   return (
     <main>
       <span>检测到变化就会自动构建的吗？？？？</span>
@@ -16,8 +19,8 @@ export default function Home() {
       </div>
 
       <div>
-        <h3>user CRUD</h3>
-        <User></User>
+        <h3>cat CRUD</h3>
+        <Cat></Cat>
       </div>
     </main>
   )
